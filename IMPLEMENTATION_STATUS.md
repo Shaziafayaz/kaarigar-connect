@@ -4,27 +4,25 @@ Last updated: 2026-08-05
 
 This file distinguishes completed work from the parts that remain unchanged when development pauses (for example, when a free-trial limit is reached).
 
-## Completed in Milestones 1–4
+## Completed in Milestones 1–5
 
 - Created the MVC-ready Express and MongoDB foundation, environment template, health check, automated test setup, and Git documentation.
-- Implemented secure customer/worker registration, login, JWT protection, role authorization, and error handling.
-- Implemented worker profiles with image uploads and public approved-worker discovery with filters, sorting, and pagination.
+- Implemented secure customer/worker registration, JWT protection, worker profiles/image uploads, worker search, and complete booking workflow.
 
-## Completed in Milestone 5
+## Completed in Milestone 6
 
-- Created the booking data model with customer, worker, selected service, preferred date, description, notes, status, and timestamps.
-- Implemented customer booking requests, booking history, detail view, and cancellation for pending/accepted bookings.
-- Implemented worker booking queue and controlled accept, reject, and complete actions.
-- Added ownership checks, service/worker matching, future-date validation, and valid booking state transitions.
-- Added and passed booking tests; the suite now contains 14 passing tests.
+- Created a review model linked to completed bookings, customers, workers, and worker profiles.
+- Implemented customer-only ratings and reviews after completed work, with one review per booking.
+- Implemented worker and public review retrieval with safe pagination.
+- Implemented automatic average-rating and total-review aggregation on worker profiles.
+- Added and passed review tests; the suite now contains 18 passing tests.
 
 ## Not yet implemented — unchanged
 
 - Frontend pages, styles, responsive layout, icons, and animations.
-- Customer profile editing, dashboard UI, ratings, and reviews.
-- Worker dashboard UI and review display.
-- Admin account provisioning/login workflow, analytics dashboard, worker approval actions, and management of users, bookings, and reviews.
-- Review model, rating aggregation, routes, controllers, and workflow.
+- Customer dashboard UI and profile editing.
+- Worker dashboard UI.
+- Admin account provisioning/login workflow, analytics dashboard, worker approval actions, and management of users, workers, bookings, and reviews.
 - Deployment configuration and complete end-user manual.
 
 ## Before the next milestone
@@ -35,4 +33,4 @@ This file distinguishes completed work from the parts that remain unchanged when
 
 ## Next planned milestone
 
-Reviews and ratings: customers rate completed bookings, workers view reviews, and ratings update approved worker profiles.
+Admin module: secure admin provisioning, dashboard counts, worker approval, and management endpoints for users, workers, bookings, and reviews.

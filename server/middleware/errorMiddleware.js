@@ -20,6 +20,9 @@ function errorHandler(error, req, res, next) { // eslint-disable-line no-unused-
   }
 
   if (error.code === 11000) {
+    if (error.keyPattern && error.keyPattern.booking) {
+      return res.status(409).json({ success: false, message: 'You have already reviewed this booking.' });
+    }
     return res.status(409).json({ success: false, message: 'An account with this email already exists.' });
   }
 

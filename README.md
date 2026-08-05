@@ -9,6 +9,7 @@ Kaarigar Connect is a college full-stack project that connects customers with lo
 - Worker profiles: skills, experience, pricing, availability, service areas, approval state, and profile-image upload support.
 - Service discovery: approved-worker search, filtering, sorting, and pagination.
 - Booking workflow: customer booking requests/history/cancellation and worker accept/reject/complete actions.
+- Reviews: completed-booking ratings, feedback, worker review lists, and rating aggregation.
 
 ### Requirements
 
@@ -100,6 +101,16 @@ Optional query parameters: `q`, `category`, `availability`, `area`, `minRate`, `
 
 Creating a booking requires `workerId`, `service`, `preferredDate`, and a 10–1000 character `description`. The worker must be approved, available, and match the selected service category. A worker can change a pending booking to `accepted` or `rejected`, then change an accepted booking to `completed`.
 
+### Review endpoints
+
+| Method | Endpoint | Purpose | Access |
+| --- | --- | --- | --- |
+| POST | `/api/reviews` | Rate and review a completed booking | Customer token |
+| GET | `/api/reviews/worker/me` | View the signed-in worker's reviews | Worker token |
+| GET | `/api/reviews/worker/:workerId` | View reviews for an approved worker | Public |
+
+Creating a review requires `bookingId`, integer `rating` from 1 to 5, and a 5–1000 character `comment`. Each completed booking can receive one review. New reviews update the corresponding worker profile's `averageRating` and `totalReviews`.
+
 Pass protected requests with `Authorization: Bearer <token>`.
 
 ## User manual (current)
@@ -111,5 +122,6 @@ Pass protected requests with `Authorization: Bearer <token>`.
 5. An administrator will approve the profile in the planned admin module; only then is it visible through the public worker-profile endpoint.
 6. Customers can search approved workers using `GET /api/workers?category=plumber&area=Pune&sort=rating`.
 7. A customer requests a worker through `POST /api/bookings`; the worker then accepts, rejects, or completes it from the worker booking API.
+8. After completion, the customer submits one rating and review through `POST /api/reviews`.
 
 Customer booking, review, and admin management workflows will be documented as their modules are completed.

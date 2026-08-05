@@ -2,6 +2,16 @@
 
 All notable changes to Kaarigar Connect are documented in this file.
 
+## [0.6.0] - 2026-08-05
+
+### Added
+
+- Review model linked to completed bookings, customers, workers, and worker profiles.
+- Customer-only completed-booking rating and review submission with duplicate prevention.
+- Worker and public review-list endpoints with bounded pagination.
+- Automatic worker-profile average rating and review-count aggregation.
+- Automated review validation, pagination, model, and access-control tests.
+
 ## [0.5.0] - 2026-08-05
 
 ### Added
