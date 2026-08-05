@@ -2,6 +2,16 @@
 
 All notable changes to Kaarigar Connect are documented in this file.
 
+## [0.3.0] - 2026-08-05
+
+### Added
+
+- Worker profile model with categories, skills, experience, hourly rate, availability, service areas, ratings, and approval state.
+- Worker-only profile creation, updates, current-profile retrieval, and public approved-profile endpoint.
+- JPG, PNG, and WEBP profile-image upload with MIME validation, random filenames, and a 5 MB limit.
+- Static serving for uploaded profile images.
+- Automated worker-profile model and access-control tests.
+
 ## [0.2.0] - 2026-08-05
 
 ### Added

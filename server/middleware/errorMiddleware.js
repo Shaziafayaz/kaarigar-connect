@@ -10,8 +10,19 @@ function errorHandler(error, req, res, next) { // eslint-disable-line no-unused-
     return res.status(400).json({ success: false, message: 'Validation failed.', errors });
   }
 
+  if (error.name === 'MulterError') {
+    const message = error.code === 'LIMIT_FILE_SIZE'
+      ? 'Image file must be 5 MB or smaller.'
+      : 'Image upload failed.';
+    return res.status(400).json({ success: false, message });
+  }
+
   if (error.code === 11000) {
     return res.status(409).json({ success: false, message: 'An account with this email already exists.' });
+  }
+
+  if (error.name === 'CastError') {
+    return res.status(400).json({ success: false, message: 'Invalid resource identifier.' });
   }
 
   return res.status(error.statusCode || 500).json({

@@ -4,3 +4,5 @@ coverage/
 *.log
 .DS_Store
 work/
+server/uploads/profile-images/*
+!server/uploads/profile-images/.gitkeep
