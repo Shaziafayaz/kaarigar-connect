@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const authRoutes = require('./routes/authRoutes');
+const bookingRoutes = require('./routes/bookingRoutes');
 const workerRoutes = require('./routes/workerRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
@@ -11,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use('/api/auth', authRoutes);
+app.use('/api/bookings', bookingRoutes);
 app.use('/api/workers', workerRoutes);
 
 app.get('/api/health', (req, res) => {

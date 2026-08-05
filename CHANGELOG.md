@@ -2,6 +2,16 @@
 
 All notable changes to Kaarigar Connect are documented in this file.
 
+## [0.5.0] - 2026-08-05
+
+### Added
+
+- Booking model with customer, worker, service, preferred date, description, status, and timestamp tracking.
+- Customer booking creation, history, secure booking retrieval, and cancellation.
+- Worker booking queue plus controlled accept, reject, and complete transitions.
+- Validation for future dates, descriptions, worker/service matching, ownership, and booking state changes.
+- Automated booking model, validation, transition, and access-control tests.
+
 ## [0.4.0] - 2026-08-05
 
 ### Added

@@ -8,6 +8,7 @@ Kaarigar Connect is a college full-stack project that connects customers with lo
 - Authentication: user registration/login, JWT access tokens, authenticated-user endpoint, role authorization middleware, validation, and error responses.
 - Worker profiles: skills, experience, pricing, availability, service areas, approval state, and profile-image upload support.
 - Service discovery: approved-worker search, filtering, sorting, and pagination.
+- Booking workflow: customer booking requests/history/cancellation and worker accept/reject/complete actions.
 
 ### Requirements
 
@@ -86,6 +87,19 @@ Worker profiles are unapproved by default. Updating an approved profile or uploa
 
 Optional query parameters: `q`, `category`, `availability`, `area`, `minRate`, `maxRate`, `sort`, `page`, and `limit`. Valid sort values: `rating` (default), `newest`, `experience`, `price_low`, and `price_high`. Results are paginated (default 12, maximum 50 per page).
 
+### Booking endpoints
+
+| Method | Endpoint | Purpose | Access |
+| --- | --- | --- | --- |
+| POST | `/api/bookings` | Create a booking request | Customer token |
+| GET | `/api/bookings/customer` | View customer booking history | Customer token |
+| GET | `/api/bookings/worker` | View worker booking requests | Worker token |
+| GET | `/api/bookings/:bookingId` | View a booking belonging to the signed-in user | Customer or worker token |
+| PATCH | `/api/bookings/:bookingId/cancel` | Cancel a pending or accepted booking | Customer token |
+| PATCH | `/api/bookings/:bookingId/status` | Accept, reject, or complete a booking | Worker token |
+
+Creating a booking requires `workerId`, `service`, `preferredDate`, and a 10–1000 character `description`. The worker must be approved, available, and match the selected service category. A worker can change a pending booking to `accepted` or `rejected`, then change an accepted booking to `completed`.
+
 Pass protected requests with `Authorization: Bearer <token>`.
 
 ## User manual (current)
@@ -96,5 +110,6 @@ Pass protected requests with `Authorization: Bearer <token>`.
 4. A worker uploads an image using `POST /api/workers/me/profile/image` and multipart field `image`.
 5. An administrator will approve the profile in the planned admin module; only then is it visible through the public worker-profile endpoint.
 6. Customers can search approved workers using `GET /api/workers?category=plumber&area=Pune&sort=rating`.
+7. A customer requests a worker through `POST /api/bookings`; the worker then accepts, rejects, or completes it from the worker booking API.
 
 Customer booking, review, and admin management workflows will be documented as their modules are completed.
