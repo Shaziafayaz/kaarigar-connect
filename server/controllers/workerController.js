@@ -99,7 +99,7 @@ const uploadMyProfileImage = asyncHandler(async (req, res) => {
 
 const getApprovedWorkerProfile = asyncHandler(async (req, res) => {
   const profile = await WorkerProfile.findOne({ user: req.params.workerId, isApproved: true })
-    .populate('user', 'name phone');
+    .populate('user', 'name');
 
   if (!profile) {
     return res.status(404).json({ success: false, message: 'Approved worker profile not found.' });

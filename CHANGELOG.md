@@ -2,6 +2,14 @@
 
 All notable changes to Kaarigar Connect are documented in this file.
 
+## [0.4.0] - 2026-08-05
+
+### Added
+
+- Public approved-worker discovery endpoint with keyword search, category, availability, service-area, and rate filters.
+- Rating, newest, experience, and price sorting with bounded pagination.
+- Search-query validation and tests that prevent invalid query values from reaching the database.
+
 ## [0.3.0] - 2026-08-05
 
 ### Added

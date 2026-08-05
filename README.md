@@ -7,6 +7,7 @@ Kaarigar Connect is a college full-stack project that connects customers with lo
 - Foundation: Express server, MongoDB configuration, and health endpoint.
 - Authentication: user registration/login, JWT access tokens, authenticated-user endpoint, role authorization middleware, validation, and error responses.
 - Worker profiles: skills, experience, pricing, availability, service areas, approval state, and profile-image upload support.
+- Service discovery: approved-worker search, filtering, sorting, and pagination.
 
 ### Requirements
 
@@ -77,6 +78,14 @@ To create a worker profile, send `category` and `hourlyRate`. Optional fields ar
 
 Worker profiles are unapproved by default. Updating an approved profile or uploading a replacement image submits it for approval again.
 
+### Worker discovery endpoint
+
+| Method | Endpoint | Purpose | Access |
+| --- | --- | --- | --- |
+| GET | `/api/workers` | Search approved worker profiles | Public |
+
+Optional query parameters: `q`, `category`, `availability`, `area`, `minRate`, `maxRate`, `sort`, `page`, and `limit`. Valid sort values: `rating` (default), `newest`, `experience`, `price_low`, and `price_high`. Results are paginated (default 12, maximum 50 per page).
+
 Pass protected requests with `Authorization: Bearer <token>`.
 
 ## User manual (current)
@@ -86,5 +95,6 @@ Pass protected requests with `Authorization: Bearer <token>`.
 3. A worker creates their profile using `PUT /api/workers/me/profile`.
 4. A worker uploads an image using `POST /api/workers/me/profile/image` and multipart field `image`.
 5. An administrator will approve the profile in the planned admin module; only then is it visible through the public worker-profile endpoint.
+6. Customers can search approved workers using `GET /api/workers?category=plumber&area=Pune&sort=rating`.
 
 Customer booking, review, and admin management workflows will be documented as their modules are completed.

@@ -3,7 +3,9 @@ function notFound(req, res) {
 }
 
 function errorHandler(error, req, res, next) { // eslint-disable-line no-unused-vars
-  console.error(error);
+  if (!error.statusCode || error.statusCode >= 500) {
+    console.error(error);
+  }
 
   if (error.name === 'ValidationError') {
     const errors = Object.values(error.errors).map((item) => item.message);
