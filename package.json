@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node server/server.js",
     "dev": "nodemon server/server.js",
-    "test": "node --test"
+    "test": "node --test",
+    "create-admin": "node server/scripts/createAdmin.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

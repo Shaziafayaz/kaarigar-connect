@@ -10,6 +10,7 @@ Kaarigar Connect is a college full-stack project that connects customers with lo
 - Service discovery: approved-worker search, filtering, sorting, and pagination.
 - Booking workflow: customer booking requests/history/cancellation and worker accept/reject/complete actions.
 - Reviews: completed-booking ratings, feedback, worker review lists, and rating aggregation.
+- Admin module: secure admin login, dashboard metrics, approvals, and protected management APIs.
 
 ### Requirements
 
@@ -28,6 +29,10 @@ Kaarigar Connect is a college full-stack project that connects customers with lo
 ### Run automated checks
 
 Run `npm test`. The current tests do not require a running MongoDB instance.
+
+### Create the first admin account
+
+Add `ADMIN_NAME`, `ADMIN_EMAIL`, and a strong `ADMIN_PASSWORD` to your local `.env`, then run `npm run create-admin`. This command connects to MongoDB and creates an admin account. Admin accounts cannot be created using public registration.
 
 ## Project structure
 
@@ -111,6 +116,23 @@ Creating a booking requires `workerId`, `service`, `preferredDate`, and a 10–1
 
 Creating a review requires `bookingId`, integer `rating` from 1 to 5, and a 5–1000 character `comment`. Each completed booking can receive one review. New reviews update the corresponding worker profile's `averageRating` and `totalReviews`.
 
+### Admin endpoints
+
+| Method | Endpoint | Purpose | Access |
+| --- | --- | --- | --- |
+| POST | `/api/admin/login` | Admin-only login | Public |
+| GET | `/api/admin/dashboard` | User, worker, booking, pending, review, and approval counts | Admin token |
+| GET | `/api/admin/users` | List users | Admin token |
+| DELETE | `/api/admin/users/:userId` | Deactivate a customer or worker | Admin token |
+| GET | `/api/admin/workers` | List worker profiles; filter `approval=pending` or `approved` | Admin token |
+| PATCH | `/api/admin/workers/:workerId/approval` | Set `{ "isApproved": true }` or `false` | Admin token |
+| GET | `/api/admin/bookings` | List bookings; optional status filter | Admin token |
+| PATCH | `/api/admin/bookings/:bookingId/status` | Set a booking status | Admin token |
+| GET | `/api/admin/reviews` | List reviews | Admin token |
+| DELETE | `/api/admin/reviews/:reviewId` | Delete review and recalculate rating | Admin token |
+
+The user deletion endpoint performs a safe deactivation rather than permanently removing records, preserving booking history and reviews. Deactivated worker profiles are removed from public search.
+
 Pass protected requests with `Authorization: Bearer <token>`.
 
 ## User manual (current)
@@ -123,5 +145,6 @@ Pass protected requests with `Authorization: Bearer <token>`.
 6. Customers can search approved workers using `GET /api/workers?category=plumber&area=Pune&sort=rating`.
 7. A customer requests a worker through `POST /api/bookings`; the worker then accepts, rejects, or completes it from the worker booking API.
 8. After completion, the customer submits one rating and review through `POST /api/reviews`.
+9. Create an admin locally, then use `/api/admin/login` to approve workers and manage the platform.
 
 Customer booking, review, and admin management workflows will be documented as their modules are completed.

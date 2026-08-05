@@ -2,6 +2,15 @@
 
 All notable changes to Kaarigar Connect are documented in this file.
 
+## [0.7.0] - 2026-08-05
+
+### Added
+
+- Local `npm run create-admin` command for secure initial admin provisioning.
+- Admin-only login, dashboard metrics, and bounded user/worker/booking/review listing APIs.
+- Worker approval, safe user deactivation, booking status management, and review deletion with rating recalculation.
+- Automated admin validation and access-control tests.
+
 ## [0.6.0] - 2026-08-05
 
 ### Added
