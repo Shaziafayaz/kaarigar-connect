@@ -13,23 +13,31 @@ This file distinguishes completed work from the parts that remain unchanged when
 - Added request-body parsing and a `GET /api/health` server health endpoint, independently testable without a live database.
 - Added `.gitignore`, README setup instructions, API note, and this status file.
 
+## Completed in Milestone 2
+
+- Created the user schema with customer, worker, and admin roles.
+- Implemented bcrypt password hashing and secure password comparison.
+- Implemented customer/worker registration, login, logout confirmation, and current-user APIs.
+- Added JWT generation, protected-route middleware, and reusable role authorization middleware.
+- Added registration validation plus centralized API error handling.
+- Added and passed four automated foundation/authentication tests.
+
 ## Not yet implemented — unchanged
 
 - Frontend pages, styles, responsive layout, icons, and animations.
-- Customer registration, login, logout, profiles, dashboard, worker search, bookings, cancellations, ratings, and reviews.
-- Worker registration, approval flow, profile image uploads, skills, experience, prices, availability, dashboard, booking decisions, and reviews.
-- Admin login, analytics dashboard, and management of users, workers, bookings, and reviews.
-- Mongoose models, API routes, controllers, validation, JWT middleware, centralized error handling, and Multer upload handling.
+- Customer profiles, dashboard, worker search, bookings, cancellations, ratings, and reviews.
+- Worker approval flow, profile image uploads, skills, experience, prices, availability, dashboard, booking decisions, and reviews.
+- Admin account provisioning/login workflow, analytics dashboard, and management of users, workers, bookings, and reviews.
+- Service, booking, review, and worker-profile models, routes, controllers, and Multer upload handling.
 - Booking workflow and review/rating workflow.
-- Automated tests, deployment configuration, full API reference, and complete end-user manual.
+- Deployment configuration, full API reference, and complete end-user manual.
 
 ## Before the next milestone
 
-1. Install dependencies with `npm install`.
-2. Copy `.env.example` to `.env`.
-3. Ensure MongoDB is running and `MONGODB_URI` is correct.
-4. Run `npm run dev` and verify `http://localhost:5000/api/health`.
+1. Ensure MongoDB is running and `MONGODB_URI` is correct.
+2. Run `npm run dev` to start the API.
+3. Run `npm test` to check the completed foundation and authentication logic.
 
 ## Next planned milestone
 
-Authentication: user model, registration, login, JWT-protected routes, and role-based access foundations.
+Worker profiles: profile fields, skills, experience, pricing, availability, image upload support, and approval status.

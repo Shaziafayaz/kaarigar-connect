@@ -2,6 +2,17 @@
 
 All notable changes to Kaarigar Connect are documented in this file.
 
+## [0.2.0] - 2026-08-05
+
+### Added
+
+- User model with roles, validation, password hashing, and active-account status.
+- Public customer/worker registration and login endpoints.
+- JWT creation, authentication middleware, role authorization helper, and current-user endpoint.
+- Stateless logout confirmation endpoint.
+- Centralized not-found and error-response middleware.
+- Automated tests for health, protected access, user validation, and JWT claims.
+
 ## [0.1.0] - 2026-08-05
 
 ### Added
