@@ -3,11 +3,7 @@ const { WorkerProfile, serviceCategories } = require('../models/WorkerProfile');
 const asyncHandler = require('../utils/asyncHandler');
 
 const sortOptions = {
-  rating: { averageRating: -1, totalReviews: -1, createdAt: -1 },
-  newest: { createdAt: -1 },
-  experience: { experienceYears: -1, averageRating: -1 },
-  price_low: { hourlyRate: 1, averageRating: -1 },
-  price_high: { hourlyRate: -1, averageRating: -1 }
+  rating: { averageRating: -1, totalReviews: -1, createdAt: -1 }
 };
 
 function searchError(message) {
@@ -35,8 +31,6 @@ function parseDiscoveryQuery(query) {
   const category = query.category ? String(query.category).trim().toLowerCase() : undefined;
   const availability = query.availability ? String(query.availability).trim().toLowerCase() : undefined;
   const area = query.area ? String(query.area).trim() : undefined;
-  const search = query.q ? String(query.q).trim() : undefined;
-  const sort = query.sort ? String(query.sort).trim().toLowerCase() : 'rating';
   const minRate = parseRate(query.minRate, 'minRate');
   const maxRate = parseRate(query.maxRate, 'maxRate');
 
@@ -45,8 +39,6 @@ function parseDiscoveryQuery(query) {
     throw searchError('Choose a valid availability status.');
   }
   if (area && area.length > 80) throw searchError('area cannot exceed 80 characters.');
-  if (search && search.length > 80) throw searchError('q cannot exceed 80 characters.');
-  if (!sortOptions[sort]) throw searchError('Choose a valid sorting option.');
   if (minRate !== undefined && maxRate !== undefined && minRate > maxRate) {
     throw searchError('minRate cannot be greater than maxRate.');
   }
@@ -55,8 +47,7 @@ function parseDiscoveryQuery(query) {
     category,
     availability,
     area,
-    search,
-    sort,
+    sort: 'rating',
     minRate,
     maxRate,
     page: parsePositiveInteger(query.page, 1, 'page', 100000),
@@ -81,22 +72,11 @@ const searchWorkers = asyncHandler(async (req, res) => {
     if (options.maxRate !== undefined) filters.hourlyRate.$lte = options.maxRate;
   }
 
-  if (options.search) {
-    const pattern = new RegExp(escapeRegExp(options.search), 'i');
-    const matchedUsers = await User.find({ name: pattern }).select('_id').lean();
-    filters.$or = [
-      { user: { $in: matchedUsers.map((user) => user._id) } },
-      { bio: pattern },
-      { skills: pattern },
-      { serviceAreas: pattern }
-    ];
-  }
-
   const skip = (options.page - 1) * options.limit;
   const [profiles, total] = await Promise.all([
     WorkerProfile.find(filters)
       .populate('user', 'name')
-      .sort(sortOptions[options.sort])
+      .sort(sortOptions.rating)
       .skip(skip)
       .limit(options.limit)
       .lean(),

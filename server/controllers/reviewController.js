@@ -8,16 +8,13 @@ function requestError(message) {
   return Object.assign(new Error(message), { statusCode: 400 });
 }
 
-function validateReviewInput({ rating, comment }) {
+function validateReviewInput({ rating }) {
   const numericRating = Number(rating);
   if (!Number.isInteger(numericRating) || numericRating < 1 || numericRating > 5) {
     throw requestError('Rating must be a whole number from 1 to 5.');
   }
-  if (typeof comment !== 'string' || comment.trim().length < 5 || comment.trim().length > 1000) {
-    throw requestError('Review comment must contain 5 to 1000 characters.');
-  }
 
-  return { rating: numericRating, comment: comment.trim() };
+  return { rating: numericRating };
 }
 
 function parsePagination(query) {

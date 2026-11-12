@@ -13,17 +13,17 @@ test('review model validates a complete review', async () => {
     customer: '507f191e810c19729de860eb',
     worker: '507f191e810c19729de860ec',
     workerProfile: '507f191e810c19729de860ed',
-    rating: 5,
-    comment: 'Quick, professional, and careful work.'
+    rating: 5
   });
 
   await review.validate();
   assert.equal(review.rating, 5);
 });
 
-test('review input rejects invalid ratings and short comments', () => {
-  assert.throws(() => validateReviewInput({ rating: 3.5, comment: 'This is fine.' }), /whole number/);
-  assert.throws(() => validateReviewInput({ rating: 4, comment: 'Bad' }), /5 to 1000/);
+test('review input rejects invalid ratings', () => {
+  assert.throws(() => validateReviewInput({ rating: 3.5 }), /whole number/);
+  assert.throws(() => validateReviewInput({ rating: 0 }), /1 to 5/);
+  assert.throws(() => validateReviewInput({ rating: 6 }), /1 to 5/);
 });
 
 test('review pagination is bounded', () => {

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Workers | Kaarigar Connect</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body data-page="workers">
+  <header class="site-header" data-site-header></header>
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Find Workers</h1>
+        <p>Filter by category, area, availability, and hourly rate.</p>
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
+        <form class="search-panel" id="worker-search">
+          <select name="category">
+            <option value="">All categories</option>
+            <option value="plumber">Plumber</option>
+            <option value="electrician">Electrician</option>
+            <option value="carpenter">Carpenter</option>
+            <option value="painter">Painter</option>
+            <option value="mechanic">Mechanic</option>
+            <option value="gardener">Gardener</option>
+            <option value="tutor">Tutor</option>
+            <option value="cleaner">Cleaner</option>
+            <option value="other">Other</option>
+          </select>
+          <button class="button" type="submit">Search</button>
+        </form>
+        <form class="search-panel" id="worker-filters" style="margin-top:12px;grid-template-columns:1fr 1fr 1fr auto">
+          <input type="text" name="area" placeholder="Service area">
+          <input type="number" name="minRate" min="0" step="1" placeholder="Min rate">
+          <input type="number" name="maxRate" min="0" step="1" placeholder="Max rate">
+          <select name="availability">
+            <option value="">Any availability</option>
+            <option value="available">Available</option>
+            <option value="busy">Busy</option>
+          </select>
+          <button class="button" type="submit">Filter</button>
+        </form>
+        <div class="grid worker-grid" id="worker-results"></div>
+        <div class="empty hidden" id="worker-empty">No approved workers matched your search.</div>
+        <div class="pagination hidden" id="worker-pagination">
+          <button class="button secondary" type="button" data-prev>Previous</button>
+          <span data-page-info></span>
+          <button class="button secondary" type="button" data-next>Next</button>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer" data-site-footer></footer>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/workers.js"></script>
+</body>
+</html>

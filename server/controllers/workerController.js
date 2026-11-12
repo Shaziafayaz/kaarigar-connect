@@ -63,10 +63,6 @@ const saveMyProfile = asyncHandler(async (req, res) => {
     });
   }
 
-  if (existingProfile && existingProfile.isApproved && Object.keys(payload).length > 0) {
-    payload.isApproved = false;
-  }
-
   const profile = await WorkerProfile.findOneAndUpdate(
     { user: req.user._id },
     { $set: payload, $setOnInsert: { user: req.user._id } },
@@ -75,26 +71,9 @@ const saveMyProfile = asyncHandler(async (req, res) => {
 
   return res.status(existingProfile ? 200 : 201).json({
     success: true,
-    message: existingProfile ? 'Worker profile updated.' : 'Worker profile created and submitted for approval.',
+    message: existingProfile ? 'Worker profile updated.' : 'Worker profile created successfully.',
     data: { profile }
   });
-});
-
-const uploadMyProfileImage = asyncHandler(async (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ success: false, message: 'Choose an image to upload.' });
-  }
-
-  const profile = await WorkerProfile.findOne({ user: req.user._id });
-  if (!profile) {
-    return res.status(404).json({ success: false, message: 'Create your worker profile before uploading an image.' });
-  }
-
-  profile.imageUrl = `/uploads/profile-images/${req.file.filename}`;
-  profile.isApproved = false;
-  await profile.save();
-
-  return res.status(200).json({ success: true, message: 'Profile image uploaded.', data: { profile } });
 });
 
 const getApprovedWorkerProfile = asyncHandler(async (req, res) => {
@@ -108,4 +87,4 @@ const getApprovedWorkerProfile = asyncHandler(async (req, res) => {
   return res.status(200).json({ success: true, data: { profile } });
 });
 
-module.exports = { getMyProfile, saveMyProfile, uploadMyProfileImage, getApprovedWorkerProfile };
+module.exports = { getMyProfile, saveMyProfile, getApprovedWorkerProfile };

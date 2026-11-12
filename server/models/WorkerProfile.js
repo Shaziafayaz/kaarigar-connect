@@ -63,13 +63,9 @@ const workerProfileSchema = new mongoose.Schema(
         message: 'Provide up to 10 service areas, each between 2 and 80 characters.'
       }
     },
-    imageUrl: {
-      type: String,
-      default: ''
-    },
     isApproved: {
       type: Boolean,
-      default: false
+      default: true
     },
     averageRating: {
       type: Number,

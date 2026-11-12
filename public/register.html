@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register | Kaarigar Connect</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body data-page="register">
+  <header class="site-header" data-site-header></header>
+  <main class="form-shell">
+    <div class="form-card">
+      <h1>Register</h1>
+      <p>Create an account to book workers or offer your services.</p>
+      <form id="register-form">
+        <div class="field">
+          <label for="name">Full name</label>
+          <input id="name" name="name" type="text" required minlength="2">
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="phone">Phone (optional)</label>
+          <input id="phone" name="phone" type="tel">
+        </div>
+        <div class="field">
+          <label for="role">I want to</label>
+          <select id="role" name="role" required>
+            <option value="customer">Book services as a customer</option>
+            <option value="worker">Offer services as a worker</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required minlength="8" autocomplete="new-password">
+        </div>
+        <div class="form-message" data-form-message></div>
+        <button class="button" type="submit" style="width:100%;margin-top:18px">Create account</button>
+      </form>
+      <p style="margin-top:18px;color:var(--muted)">Already registered? <a class="inline-link" href="/login.html">Log in</a></p>
+    </div>
+  </main>
+  <footer class="site-footer" data-site-footer></footer>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

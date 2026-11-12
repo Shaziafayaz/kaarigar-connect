@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Customer Dashboard | Kaarigar Connect</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body data-page="customer-dashboard">
+  <header class="site-header" data-site-header></header>
+  <main class="dashboard">
+    <div class="container">
+      <div class="dashboard-head">
+        <h1>My Bookings</h1>
+        <p>Track your booking requests and leave reviews after completed jobs.</p>
+      </div>
+      <div class="tabs">
+        <button class="tab active" type="button" data-filter="all">All</button>
+        <button class="tab" type="button" data-filter="pending">Pending</button>
+        <button class="tab" type="button" data-filter="accepted">Accepted</button>
+        <button class="tab" type="button" data-filter="completed">Completed</button>
+        <button class="tab" type="button" data-filter="cancelled">Cancelled</button>
+      </div>
+      <div id="booking-list"></div>
+    </div>
+  </main>
+  <footer class="site-footer" data-site-footer></footer>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/customer-dashboard.js"></script>
+</body>
+</html>

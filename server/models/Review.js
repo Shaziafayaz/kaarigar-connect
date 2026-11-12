@@ -32,13 +32,6 @@ const reviewSchema = new mongoose.Schema(
         validator: Number.isInteger,
         message: 'Rating must be a whole number.'
       }
-    },
-    comment: {
-      type: String,
-      required: [true, 'Review comment is required.'],
-      trim: true,
-      minlength: [5, 'Review comment must contain at least 5 characters.'],
-      maxlength: [1000, 'Review comment cannot exceed 1000 characters.']
     }
   },
   { timestamps: true }

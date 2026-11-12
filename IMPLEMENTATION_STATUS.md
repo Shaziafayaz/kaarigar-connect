@@ -1,36 +1,44 @@
 # Kaarigar Connect — Implementation Status
 
-Last updated: 2026-08-05
+Last updated: 2026-08-10
 
-This file distinguishes completed work from the parts that remain unchanged when development pauses (for example, when a free-trial limit is reached).
+This file distinguishes completed work from the parts that remain unchanged when development pauses.
 
 ## Completed in Milestones 1–6
 
 - Created the MVC-ready Express and MongoDB foundation, environment template, health check, automated tests, and Git documentation.
-- Implemented customer/worker JWT authentication, worker profiles with image uploads, discovery, bookings, ratings, and reviews.
+- Implemented customer/worker JWT authentication, worker profiles, discovery, bookings, ratings, and reviews.
 
-## Completed in Milestone 7
+## Completed in Milestone 8 (Frontend)
 
-- Added a local command to create the first admin account without public admin registration.
-- Implemented secure admin login and a dashboard with user, worker, booking, pending booking, review, and worker-approval counts.
-- Implemented management APIs for users, worker profiles/approval, bookings, and reviews.
-- Used user deactivation rather than permanent removal to preserve booking history; deactivated workers are no longer approved or available.
-- Added and passed admin tests; the suite now contains 21 passing tests.
+- Built responsive public pages: home, about, services, contact, worker discovery, and worker profile detail.
+- Implemented customer and worker registration/login with JWT session storage.
+- Connected customer dashboard for booking history, cancellation, and post-completion reviews.
+- Connected worker dashboard for profile management, booking queue, and review list.
+- Reused existing `public/css/styles.css`, extended shared utilities in `api.js` and `common.js`.
 
-## Not yet implemented — unchanged
+## Project Simplifications (Current State)
 
-- Frontend pages, styles, responsive layout, icons, and animations.
-- Customer dashboard UI and profile editing.
-- Worker dashboard UI.
-- Frontend admin dashboard and management screens.
-- Deployment configuration and complete end-user manual.
+- Removed admin functionality and admin dashboard for simplified user-facing application
+- Simplified worker search to essential filters: category, area, rate, availability
+- Removed profile image upload functionality (using avatars instead)
+- Simplified review system to star ratings only (1-5, no comments)
+- Workers are auto-approved for simplified workflow
+- Added subtle animations for polished but basic appearance
+- Removed complex sorting and text search from worker discovery
 
-## Before the next milestone
+## Not yet implemented
+
+- Deployment configuration.
+- Complete end-user manual with frontend walkthrough.
+- Optional UI polish: icons library integration, page transition animations.
+
+## Before running the full app
 
 1. Ensure MongoDB is running and `MONGODB_URI` is correct.
-2. Add `ADMIN_NAME`, `ADMIN_EMAIL`, and `ADMIN_PASSWORD` to `.env`, then run `npm run create-admin` once.
-3. Run `npm run dev` to start the API and `npm test` to check all completed backend modules.
+2. Run `npm run dev` and open `http://localhost:5000`.
+3. Run `npm test` to check all backend modules.
 
 ## Next planned milestone
 
-Frontend foundation: responsive public pages, shared navigation, service cards, and vanilla-JavaScript API integration.
+Deployment and documentation: hosting setup, production environment guide, and an updated user manual covering the web interface.

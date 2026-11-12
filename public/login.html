@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log in | Kaarigar Connect</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body data-page="login">
+  <header class="site-header" data-site-header></header>
+  <main class="form-shell">
+    <div class="form-card">
+      <h1>Login</h1>
+      <p>Sign in to manage your bookings and profile.</p>
+      <form id="login-form">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required autocomplete="current-password">
+        </div>
+        <div class="form-message" data-form-message></div>
+        <button class="button" type="submit" style="width:100%;margin-top:18px">Log in</button>
+      </form>
+      <p style="margin-top:18px;color:var(--muted)">New here? <a class="inline-link" href="/register.html">Create an account</a></p>
+    </div>
+  </main>
+  <footer class="site-footer" data-site-footer></footer>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/auth.js"></script>
+</body>
+</html>

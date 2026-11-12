@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worker Dashboard | Kaarigar Connect</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body data-page="worker-dashboard">
+  <header class="site-header" data-site-header></header>
+  <main class="dashboard">
+    <div class="container">
+      <div class="dashboard-head">
+        <h1>Worker Dashboard</h1>
+        <p>Manage your profile, respond to bookings, and track reviews.</p>
+      </div>
+      <div class="tabs">
+        <button class="tab active" type="button" data-panel="profile">Profile</button>
+        <button class="tab" type="button" data-panel="bookings">Bookings</button>
+        <button class="tab" type="button" data-panel="reviews">Reviews</button>
+      </div>
+
+      <section id="panel-profile">
+        <div class="panel">
+          <div id="profile-status"></div>
+          <form class="profile-form" id="profile-form">
+            <div class="two-col">
+              <div class="field"><label for="category">Category</label>
+                <select id="category" name="category" required>
+                  <option value="plumber">Plumber</option>
+                  <option value="electrician">Electrician</option>
+                  <option value="carpenter">Carpenter</option>
+                  <option value="painter">Painter</option>
+                  <option value="mechanic">Mechanic</option>
+                  <option value="gardener">Gardener</option>
+                  <option value="tutor">Tutor</option>
+                  <option value="cleaner">Cleaner</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              <div class="field"><label for="hourlyRate">Hourly rate (₹)</label><input id="hourlyRate" name="hourlyRate" type="number" min="0" step="1" required></div>
+            </div>
+            <div class="two-col">
+              <div class="field"><label for="experienceYears">Experience (years)</label><input id="experienceYears" name="experienceYears" type="number" min="0" max="60"></div>
+              <div class="field"><label for="availability">Availability</label>
+                <select id="availability" name="availability">
+                  <option value="available">Available</option>
+                  <option value="busy">Busy</option>
+                  <option value="unavailable">Unavailable</option>
+                </select>
+              </div>
+            </div>
+            <div class="field"><label for="bio">Bio</label><textarea id="bio" name="bio" rows="4" maxlength="800"></textarea></div>
+            <div class="field"><label for="skills">Skills (comma separated)</label><input id="skills" name="skills" type="text" placeholder="Pipe repair, Bathroom fitting"></div>
+            <div class="field"><label for="serviceAreas">Service areas (comma separated)</label><input id="serviceAreas" name="serviceAreas" type="text" placeholder="Pune West, Kothrud"></div>
+            <div class="form-message" data-profile-message></div>
+            <button class="button" type="submit">Save profile</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="panel-bookings" class="hidden">
+        <div id="worker-bookings"></div>
+      </section>
+
+      <section id="panel-reviews" class="hidden">
+        <div class="panel" id="worker-reviews"></div>
+      </section>
+    </div>
+  </main>
+  <footer class="site-footer" data-site-footer></footer>
+  <script src="/js/api.js"></script>
+  <script src="/js/common.js"></script>
+  <script src="/js/worker-dashboard.js"></script>
+</body>
+</html>

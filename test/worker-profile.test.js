@@ -17,7 +17,7 @@ test('worker profile has correct defaults and validates a complete profile', asy
 
   await profile.validate();
   assert.equal(profile.availability, 'available');
-  assert.equal(profile.isApproved, false);
+  assert.equal(profile.isApproved, true);
   assert.equal(serviceCategories.includes('electrician'), true);
 });
 
